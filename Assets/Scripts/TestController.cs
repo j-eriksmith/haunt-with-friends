@@ -15,13 +15,9 @@ public class TestController : MonoBehaviour{
 	
 	// Update is called once per frame
 	void Update () {
-        //dir = new bool[] { Input.GetKey(KeyCode.UpArrow), Input.GetKey(KeyCode.DownArrow), 
-        //    Input.GetKey(KeyCode.LeftArrow), Input.GetKey(KeyCode.RightArrow) };
-        dir[0] = Input.GetKey(KeyCode.UpArrow);
-        dir[1] = Input.GetKey(KeyCode.DownArrow);
-        dir[2] = Input.GetKey(KeyCode.LeftArrow);
-        dir[3] = Input.GetKey(KeyCode.RightArrow);
-        rb.velocity = new Vector2((System.Convert.ToInt32(dir[3]) - System.Convert.ToInt32(dir[2])) * SPEED, 
-            (System.Convert.ToInt32(dir[0]) - System.Convert.ToInt32(dir[1])) * SPEED);
+        dir = new bool[] { Input.GetKey(KeyCode.UpArrow), Input.GetKey(KeyCode.DownArrow), 
+            Input.GetKey(KeyCode.LeftArrow), Input.GetKey(KeyCode.RightArrow) };
+        rb.velocity = new Vector2((System.Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - System.Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow))) * SPEED, 
+            (System.Convert.ToInt32(Input.GetKey(KeyCode.UpArrow)) - System.Convert.ToInt32(Input.GetKey(KeyCode.DownArrow))) * SPEED);
 	}
 }
