@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class EnemyAttacks : NetworkBehaviour {
 
 	GameObject player;	
+	public int damage;
 	private bool playerInBounds = false;
 	public float timeBetweenDamage = 1.5f;
 	private float currTime = 0;
@@ -23,13 +24,13 @@ public class EnemyAttacks : NetworkBehaviour {
 			firstCollision = true;
 			currTime = 0;
 		} else if (playerInBounds && firstCollision) {
-			dealDamage ();
+			dealDamage (damage);
 			currTime += Time.deltaTime;
 			firstCollision = false;
 		} else {
 			currTime += Time.deltaTime;
 			if (currTime > timeBetweenDamage) {
-				dealDamage ();
+				dealDamage (damage);
 				currTime = 0;
 			}
 		}
@@ -55,11 +56,11 @@ public class EnemyAttacks : NetworkBehaviour {
 		}
 	}
 
-	public void dealDamage()
+	public void dealDamage(int damage)
 	{
 		if (playerInBounds) {
 			print ("Take Damage");
-			player.SendMessage("TakeDamage", 1);
+			player.SendMessage ("TakeDamage", damage);
 		}
 	}
 
