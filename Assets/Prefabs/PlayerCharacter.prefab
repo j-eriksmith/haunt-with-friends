@@ -240,8 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5743b0fc00c03b459563949d85edb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 224654477620742306}
-  currentHealth: 100
 --- !u!114 &114397021849793228
 MonoBehaviour:
   m_ObjectHideFlags: 1
