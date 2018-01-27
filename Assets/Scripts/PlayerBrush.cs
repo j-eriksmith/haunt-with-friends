@@ -9,7 +9,10 @@ using UnityEngine.Networking;
 public class PlayerBrush : NetworkBehaviour
 {
     public Color brushColor = Color.cyan;
-    public int brushSize = 5;
+    public int brushSize = 3;
+    private Vector2 prevCoords;
+    private bool prevMouse = false;
+    private int res = 100;
 
     [Server]
     private void Start()
@@ -28,6 +31,7 @@ public class PlayerBrush : NetworkBehaviour
 
     private void Update()
     {
+        //print(prevMouse);
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -38,8 +42,8 @@ public class PlayerBrush : NetworkBehaviour
                 var pallet = hit.collider.GetComponent<PaintCanvas>();
                 if (pallet != null)
                 {
-                    Debug.Log(hit.textureCoord);
-                    Debug.Log(hit.point);
+                    //Debug.Log(hit.textureCoord);
+                    //Debug.Log(hit.point);
 
                     Renderer rend = hit.transform.GetComponent<Renderer>();
                     MeshCollider meshCollider = hit.collider as MeshCollider;
@@ -51,37 +55,53 @@ public class PlayerBrush : NetworkBehaviour
                     Vector2 pixelUV = hit.textureCoord;
                     pixelUV.x *= tex.width;
                     pixelUV.y *= tex.height;
-
-                    CmdBrushAreaWithColorOnServer(pixelUV, brushColor, brushSize);
-                    BrushAreaWithColor(pixelUV, brushColor, brushSize);
+                    if (!prevMouse)
+                    {
+                        prevCoords = pixelUV;
+                    }
+                    //print(prevCoords);
+                    //print(pixelUV);
+                    CmdBrushAreaWithColorOnServer(prevCoords, pixelUV, brushColor, brushSize);
+                    BrushAreaWithColor(prevCoords, pixelUV, brushColor, brushSize);
+                    prevCoords = pixelUV;
+                    prevMouse = true;
                 }
             }
+        }
+        else
+        {
+            prevMouse = false;
         }
     }
 
     [Command]
-    private void CmdBrushAreaWithColorOnServer(Vector2 pixelUV, Color color, int size)
+    private void CmdBrushAreaWithColorOnServer(Vector2 start, Vector2 end, Color color, int size)
     {
-        RpcBrushAreaWithColorOnClients(pixelUV, color, size);
-        BrushAreaWithColor(pixelUV, color, size);
+        RpcBrushAreaWithColorOnClients(start, end, color, size);
+        BrushAreaWithColor(start, end, color, size);
     }
 
     [ClientRpc]
-    private void RpcBrushAreaWithColorOnClients(Vector2 pixelUV, Color color, int size)
+    private void RpcBrushAreaWithColorOnClients(Vector2 start, Vector2 end, Color color, int size)
     {
-        BrushAreaWithColor(pixelUV, color, size);
+        BrushAreaWithColor(start, end, color, size);
     }
 
-    private void BrushAreaWithColor(Vector2 pixelUV, Color color, int size)
+    private void BrushAreaWithColor(Vector2 start, Vector2 end, Color color, int size)
     {
-        for (int x = -size; x < size; x++)
+        for (int t = 0; t < res; t++)
         {
-            for (int y = -size; y < size; y++)
+            //print(t);
+            Vector2 pixelUV = Vector2.Lerp(start, end, (float)t/res);
+            //print(pixelUV);
+            for (int x = -size; x < size; x++)
             {
-                PaintCanvas.Texture.SetPixel((int)pixelUV.x + x, (int)pixelUV.y + y, color);
+                for (int y = -size; y < size; y++)
+                {
+                    PaintCanvas.Texture.SetPixel((int)pixelUV.x + x, (int)pixelUV.y + y, color);
+                }
             }
         }
-
         PaintCanvas.Texture.Apply();
     }
 }
