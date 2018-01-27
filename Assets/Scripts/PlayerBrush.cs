@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * Code modified from https://unity3d.college/2017/07/22/build-unity-multiplayer-drawing-game-using-unet-unity3d/
+ * Originally written by Jason Weimann
+ */
+
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerBrush : NetworkBehaviour {
-    public Color brushColor;
-    public const int BRUSH_SIZE = 8;
+public class PlayerBrush : NetworkBehaviour
+{
+    public Color brushColor = Color.cyan;
+    public int brushSize = 5;
 
     [Server]
     private void Start()
@@ -27,8 +31,8 @@ public class PlayerBrush : NetworkBehaviour {
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
+            RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 var pallet = hit.collider.GetComponent<PaintCanvas>();
@@ -40,41 +44,39 @@ public class PlayerBrush : NetworkBehaviour {
                     Renderer rend = hit.transform.GetComponent<Renderer>();
                     MeshCollider meshCollider = hit.collider as MeshCollider;
 
-                    if (rend == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
-                    {
+                    if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null)
                         return;
-                    }
 
                     Texture2D tex = rend.material.mainTexture as Texture2D;
                     Vector2 pixelUV = hit.textureCoord;
                     pixelUV.x *= tex.width;
                     pixelUV.y *= tex.height;
 
-                    CmdBrushAreaWithColorOnServer(pixelUV, brushColor);
-                    BrushAreaWithColor(pixelUV, brushColor);
+                    CmdBrushAreaWithColorOnServer(pixelUV, brushColor, brushSize);
+                    BrushAreaWithColor(pixelUV, brushColor, brushSize);
                 }
             }
         }
     }
 
     [Command]
-    private void CmdBrushAreaWithColorOnServer(Vector2 pixelUV, Color color)
+    private void CmdBrushAreaWithColorOnServer(Vector2 pixelUV, Color color, int size)
     {
-        RpcBrushAreaWithColorOnClients(pixelUV, color);
-        BrushAreaWithColor(pixelUV, color);
+        RpcBrushAreaWithColorOnClients(pixelUV, color, size);
+        BrushAreaWithColor(pixelUV, color, size);
     }
 
     [ClientRpc]
-    private void RpcBrushAreaWithColorOnClients(Vector2 pixelUV, Color color)
+    private void RpcBrushAreaWithColorOnClients(Vector2 pixelUV, Color color, int size)
     {
-        BrushAreaWithColor(pixelUV, color);
+        BrushAreaWithColor(pixelUV, color, size);
     }
 
-    private void BrushAreaWithColor(Vector2 pixelUV, Color color)
+    private void BrushAreaWithColor(Vector2 pixelUV, Color color, int size)
     {
-        for(int x = -BRUSH_SIZE; x < BRUSH_SIZE; x++)
+        for (int x = -size; x < size; x++)
         {
-            for(int y = -BRUSH_SIZE; y < BRUSH_SIZE; y++)
+            for (int y = -size; y < size; y++)
             {
                 PaintCanvas.Texture.SetPixel((int)pixelUV.x + x, (int)pixelUV.y + y, color);
             }
