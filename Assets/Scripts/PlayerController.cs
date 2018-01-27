@@ -13,8 +13,8 @@ public class PlayerController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!isLocalPlayer) return;
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * 10f;
-        float y = Input.GetAxis("Vertical") * Time.deltaTime * 10f;
+        float x = Input.GetAxis("Horizontal") * Time.deltaTime;
+        float y = Input.GetAxis("Vertical") * Time.deltaTime;
 
         transform.Translate(x, y, 0);
 	}
@@ -22,6 +22,7 @@ public class PlayerController : NetworkBehaviour {
     public override void OnStartLocalPlayer()
     {
         //Local player is initialized to blue color
+        //GetComponent<SpriteRenderer>().color = Color.clear;
         GetComponent<SpriteRenderer>().color = Color.blue;
     }
 }
