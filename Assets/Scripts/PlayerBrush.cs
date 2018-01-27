@@ -8,8 +8,8 @@ using UnityEngine.Networking;
 
 public class PlayerBrush : NetworkBehaviour
 {
-    public Color brushColor = Color.cyan;
-    public int brushSize = 3;
+    //public Color brushColor = Color.cyan;
+    //public int brushSize = 3;
     private Vector2 prevCoords;
     private bool prevMouse = false;
     private int res = 100;
@@ -61,8 +61,8 @@ public class PlayerBrush : NetworkBehaviour
                     }
                     //print(prevCoords);
                     //print(pixelUV);
-                    CmdBrushAreaWithColorOnServer(prevCoords, pixelUV, brushColor, brushSize);
-                    BrushAreaWithColor(prevCoords, pixelUV, brushColor, brushSize);
+                    CmdBrushAreaWithColorOnServer(prevCoords, pixelUV, ToolPicker.brushColor, ToolPicker.brushSize);
+                    BrushAreaWithColor(prevCoords, pixelUV, ToolPicker.brushColor, ToolPicker.brushSize);
                     prevCoords = pixelUV;
                     prevMouse = true;
                 }
