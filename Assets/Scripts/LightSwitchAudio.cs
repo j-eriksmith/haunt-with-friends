@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LightSwitchAudio : NetworkBehaviour {
+public class LightSwitchAudio : Interactable {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    PlayerController pc;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            GetComponent<AudioSource>().Play();
+            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+            pc.setInteractable(this);
         }
     }
 
@@ -27,7 +20,8 @@ public class LightSwitchAudio : NetworkBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            GetComponent<AudioSource>().Stop();
+            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+            pc.removeInteractable(this);
         }
     }
 }
