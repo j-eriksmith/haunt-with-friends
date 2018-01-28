@@ -14,46 +14,37 @@ public class EnemyAttacks : NetworkBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+		this.player = GameObject.FindGameObjectWithTag ("Player");
 	}
 
 	// Update is called one per frame
 	void Update()
 	{
-		
-		if (!playerInBounds) {
-			firstCollision = true;
-			currTime = 0;
-		} else if (playerInBounds && firstCollision) {
-			dealDamage (damage);
-			currTime += Time.deltaTime;
-			firstCollision = false;
+		if (player == null) {
+			this.player = GameObject.FindGameObjectWithTag ("Player");
 		} else {
-			currTime += Time.deltaTime;
-			if (currTime > timeBetweenDamage) {
-				dealDamage (damage);
+			checkInBounds ();
+			if (!playerInBounds) {
+				firstCollision = true;
 				currTime = 0;
+			} else if (playerInBounds && firstCollision) {
+				dealDamage (damage);
+				currTime += Time.deltaTime;
+				firstCollision = false;
+			} else {
+				currTime += Time.deltaTime;
+				if (currTime > timeBetweenDamage) {
+					dealDamage (damage);
+					currTime = 0;
+				}
 			}
 		}
-		
+
 	}
 
-	private void addCharacter(GameObject player)
+	void checkInBounds()
 	{
-		this.player = player;
-	}
-
-	void OnCollisionEnter2D(Collision2D Other)
-	{
-		if (Other.gameObject == player) {
-			playerInBounds = true;
-		}
-	}
-
-	void OnCollisionExit2D(Collision2D Other)
-	{
-		if (Other.gameObject == player) {
-			playerInBounds = false;
-		}
+		playerInBounds = Vector3.Distance (player.transform.position, this.transform.position) <= 0.1;
 	}
 
 	public void dealDamage(int damage)
