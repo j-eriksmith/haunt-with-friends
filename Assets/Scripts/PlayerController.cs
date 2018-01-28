@@ -32,7 +32,10 @@ public class PlayerController : NetworkBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
-            if (isClient) CmdSetLight(enabled);
+            if (isClient)
+            {
+                CmdSetLight(enabled);
+            }
         }
     }
 
@@ -62,9 +65,10 @@ public class PlayerController : NetworkBehaviour {
     //-------------------------
     private IEnumerator LightDelay()
     {
+        Interactable finalInteractable = currentInteractable;
         yield return new WaitForSeconds(5);
-        currentInteractable.GetComponent<Light>().enabled = false;
-        currentInteractable.GetComponent<AudioSource>().Stop(); //Todo: play light breaking audio
+        finalInteractable.GetComponent<Light>().enabled = false;
+        finalInteractable.GetComponent<AudioSource>().Stop(); //Todo: play light breaking audio
         currentInteractable = null;
     }
 
