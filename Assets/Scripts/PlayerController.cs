@@ -42,7 +42,7 @@ public class PlayerController : NetworkBehaviour {
 
     void updateQuadrant()
     {
-        quadrant = System.Convert.ToInt32(rb.position.x > -1) * 2 + System.Convert.ToInt32(rb.position.y > 0);
+        quadrant = System.Convert.ToInt32(rb.position.x > 0) * 2 + System.Convert.ToInt32(rb.position.y > 0);
     }
 
     // Update is called once per frame
