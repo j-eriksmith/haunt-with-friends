@@ -12,6 +12,7 @@ public class Door : Interactable {
     {
         interactSound = Resources.Load<AudioClip>("Audio/door-locked");
         audioSource = GetComponent<AudioSource>();
+        //audioSource.PlayDelayed(5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

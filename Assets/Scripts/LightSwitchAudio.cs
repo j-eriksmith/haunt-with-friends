@@ -7,6 +7,11 @@ public class LightSwitchAudio : Interactable {
 
     PlayerController pc;
 
+    private void Start()
+    {
+        //GetComponent<AudioSource>().PlayDelayed(5f);
+    }
+
     public override void PlayInteractSound()
     {
         //If we want a different sound for the light switch when its on...
