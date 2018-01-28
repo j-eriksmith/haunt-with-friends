@@ -12,7 +12,7 @@ public class EnemySpawner : NetworkBehaviour {
     {
         for (int i = 0; i < enemyCount; ++i)
         {
-            Vector2 spawn = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            Vector2 spawn = new Vector2(transform.position.x, transform.position.y);
             GameObject e = (GameObject)Instantiate(enemy, spawn, Quaternion.Euler(0f, 0f, 0f));
             NetworkServer.Spawn(e);
         }
