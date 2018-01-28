@@ -103,7 +103,7 @@ public class PlayerController : NetworkBehaviour {
     public void SendOpenDoorCmd()
     {
         CmdOpenExitDoor();
-        currentInteractable = null;
+        //currentInteractable = null;
     }
 
     [Command] 
