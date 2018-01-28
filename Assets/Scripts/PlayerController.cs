@@ -6,15 +6,18 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     private Interactable currentInteractable;
+    private GameObject damage;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        damage = GameObject.Find("enemy");
+        damage.SendMessage("addCharacter", gameObject);
         if (isLocalPlayer)
         {
             GetComponent<AudioListener>().enabled = true;
         }
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         if (!isLocalPlayer) return;
@@ -37,6 +40,7 @@ public class PlayerController : NetworkBehaviour {
     {
         //Local player is initialized to blue color
         //GetComponent<SpriteRenderer>().color = Color.clear;
+
         GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
