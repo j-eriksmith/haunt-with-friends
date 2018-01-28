@@ -7,6 +7,11 @@ public class LightSwitchAudio : Interactable {
 
     PlayerController pc;
 
+    public override void PlayInteractSound()
+    {
+        //If we want a different sound for the light switch when its on...
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

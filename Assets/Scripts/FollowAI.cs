@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 
 public class FollowAI : NetworkBehaviour {
 
-	GameObject player;
-	private float speed = 0.5f;
+	HashSet<GameObject> container = new HashSet<GameObject>();
+	public float speed = 0.5f;
 	private bool playerInRange;
 	// Use this for initialization
 	void Start()
@@ -16,27 +16,43 @@ public class FollowAI : NetworkBehaviour {
 
 	void OnTriggerStay2D(Collider2D other)
 	{
-		if (other.gameObject == player) {
+		if (other.gameObject.tag == "Player") {
 			playerInRange = true;
+			container.Add(other.gameObject);
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.gameObject == player) {
+		if (other.gameObject.tag == "Player") {
 			playerInRange = false;
+			container.Remove(other.gameObject);
 		}
+	}
+
+	GameObject chooseClosestPlayer()
+	{
+		GameObject closest_target = null; 
+		float min_distance = 1000f;
+		foreach (GameObject player in container) {
+			print ("container loop");
+			print ("player");
+			float distance = Vector3.Distance (this.transform.position, player.transform.position);
+			if (distance <= min_distance) {
+				closest_target = player;
+				min_distance = distance;
+			}
+		}
+		return closest_target;
 	}
 		
 	// Update is called once per frame
 	void Update()
 	{
-		if (player == null) {
-			player = GameObject.FindGameObjectWithTag ("Player");
-		} 
-		else if (playerInRange) {
+		if (playerInRange) {
 			//Vector2 delta =  player.transform.position
-			this.transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+			GameObject targ = chooseClosestPlayer();
+			this.transform.position = Vector3.MoveTowards(this.transform.position, targ.transform.position, speed * Time.deltaTime);
 		}	 
 	}
 }

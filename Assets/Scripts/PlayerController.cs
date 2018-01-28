@@ -26,12 +26,12 @@ public class PlayerController : NetworkBehaviour {
 
     void HandleInputs()
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null && isClient)
         {
-            if (isClient)
-            {
+            if (currentInteractable is LightSwitchAudio)
                 CmdSetLight(enabled);
-            }
+            else if (currentInteractable is Door)
+                CmdOpenDoor();
         }
     }
 
@@ -81,5 +81,19 @@ public class PlayerController : NetworkBehaviour {
         currentInteractable.GetComponent<Light>().enabled = true;
         StartCoroutine(LightDelay());
     }
-    //--------------------------
+    //Door commands--------------------------
+
+    [Command]
+    private void CmdOpenDoor()
+    {
+        RpcOpenDoor();
+    }
+
+    [ClientRpc]
+    private void RpcOpenDoor()
+    {
+        currentInteractable.PlayInteractSound();
+        currentInteractable = null;
+    }
+
 }
