@@ -8,11 +8,20 @@ public class ExitDoor : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().IncrementPlayersDone();
+        }
+    }
 
     public void Open()
     {

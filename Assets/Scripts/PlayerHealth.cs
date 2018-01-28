@@ -17,8 +17,7 @@ public class PlayerHealth : NetworkBehaviour {
         maxHealth -= amount;
         if (maxHealth <= 0)
         {
-            maxHealth = 0;
-            Debug.Log("Dead!");
+			//Destroy (this.gameObject);
         }
     }
 }
