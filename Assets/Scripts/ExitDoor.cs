@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitDoor : MonoBehaviour {
+public class ExitDoor : Interactable {
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,7 @@ public class ExitDoor : MonoBehaviour {
         }
     }
 
-    public void Open()
+    public override void PlayInteractSound()
     {
         GetComponent<AudioSource>().Play();
         GetComponent<CircleCollider2D>().enabled = true;

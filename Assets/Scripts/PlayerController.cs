@@ -171,6 +171,8 @@ public class PlayerController : NetworkBehaviour {
                 CmdSetLight(currentInteractable.GetInstanceID());
             else if (currentInteractable is Door)
                 CmdOpenDoor();
+            else if (currentInteractable is ExitDoor)
+                CmdOpenExitDoor();
         }
     }
 
@@ -217,6 +219,7 @@ public class PlayerController : NetworkBehaviour {
     [ClientRpc]
     private void RpcOnLightHook(int light)
     {
+        Debug.Log(currentInteractable);
         currentInteractable.GetComponent<CircleCollider2D>().enabled = false;
         currentInteractable.GetComponent<Light>().enabled = true;
         StartCoroutine(LightDelay());
@@ -252,9 +255,9 @@ public class PlayerController : NetworkBehaviour {
     [ClientRpc]
     private void RpcOpenExitDoor()
     {
-        if (currentInteractable != null) currentInteractable.PlayInteractSound();
-        exitDoor.GetComponent<ExitDoor>().Open();
-        currentInteractable = null;
+        GameObject exitDoor = GameObject.FindGameObjectWithTag("ExitDoor");
+        exitDoor.GetComponent<ExitDoor>().PlayInteractSound();
+        if (currentInteractable == exitDoor) currentInteractable = null;
     }
 
     public void IncrementPlayersDone()

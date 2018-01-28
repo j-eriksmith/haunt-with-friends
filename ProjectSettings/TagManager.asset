@@ -6,6 +6,8 @@ TagManager:
   tags:
   - enemy
   - ExitDoor
+  - WinText
+  - QuitButton
   layers:
   - Default
   - TransparentFX

@@ -21,19 +21,19 @@ public class Key : Interactable
         if (collision.gameObject.tag == "Player")
         {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
-            pc.setInteractable(this);
+            pc.setInteractable(exitDoor);
+            GetComponent<CircleCollider2D>().enabled = false;
+            audioSource.Stop();
+            audioSource.clip = interactSound;
+            audioSource.loop = false;
+            audioSource.Play();
             pc.SendOpenDoorCmd();
+            Destroy(this.gameObject, 2f);
         }
     }
 
     public override void PlayInteractSound()
     {
-        GetComponent<CircleCollider2D>().enabled = false;
-        audioSource.Stop();
-        audioSource.clip = interactSound;
-        audioSource.loop = false;
-        audioSource.Play();
-        //exitDoor.Open();
-        Destroy(this.gameObject, 2f);
+        
     }
 }
