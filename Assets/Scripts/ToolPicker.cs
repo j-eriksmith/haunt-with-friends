@@ -15,7 +15,7 @@ public class ToolPicker : MonoBehaviour {
 
     private void Start()
     {
-        brushColor = Color.cyan;
+        brushColor = new Color32(255, 127, 0, 255);
         brushSize = 3;
     }
 
@@ -23,16 +23,30 @@ public class ToolPicker : MonoBehaviour {
     {
         if(tool == 0)
         {
-            brushColor = Color.cyan;
+            brushColor = new Color32(255, 127, 0, 255);
             brushSize = 3;
-            Debug.Log("Pen Selected");
+            Debug.Log("Red Selected");
         }
 
-        else if(tool == 1)
+        else if (tool == 1)
+        {
+            brushColor = new Color32(127, 0, 255, 255);
+            brushSize = 3;
+            Debug.Log("Green Selected");
+        }
+
+        else if (tool == 2)
+        {
+            brushColor = new Color32(0, 0, 255, 255);
+            brushSize = 3;
+            Debug.Log("Blue Selected");
+        }
+
+        else if(tool == 3)
         {
             brushColor = Color.clear;
-            brushSize = 5;
-            Debug.Log("Color Selected");
+            brushSize = 15;
+            Debug.Log("Eraser Selected");
         }
     }
 }
