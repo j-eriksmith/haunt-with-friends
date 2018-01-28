@@ -109,7 +109,6 @@ public class PlayerController : NetworkBehaviour {
             }
             else if (!audioSrc.isPlaying && canStep)
             {
-                print("start");
                 if (quadrant == 1)
                 {
                     audioSrc.PlayOneShot(clipWood);
@@ -197,15 +196,6 @@ public class PlayerController : NetworkBehaviour {
         }
     }
 
-    private void CheckForWin(int finishedPlayers)
-    {
-        Debug.Log(finishedPlayers);
-        if (finishedPlayers == 2)
-        {
-            Debug.Log("you've done it!");
-        }
-    }
-
     //Light Switch Logic (this can't live on its own because command calls must originate from a NetworkManager spawned object)
     //-------------------------
     private IEnumerator LightDelay()
@@ -281,7 +271,9 @@ public class PlayerController : NetworkBehaviour {
         finishedPlayers++;
         if (finishedPlayers == 2)
         {
-            Debug.Log("game is done!");
+            CreateMessage message = gameObject.GetComponent<CreateMessage>();
+            message.enableWinObjects();
+            //Debug.Log("game is done!");
         }
     }
 }

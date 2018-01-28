@@ -27,5 +27,6 @@ public class ExitDoor : MonoBehaviour {
     {
         GetComponent<AudioSource>().Play();
         GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<Light>().enabled = true;
     }
 }

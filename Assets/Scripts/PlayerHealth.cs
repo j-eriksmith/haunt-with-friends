@@ -17,7 +17,9 @@ public class PlayerHealth : NetworkBehaviour {
         maxHealth -= amount;
         if (maxHealth <= 0)
         {
-			//Destroy (this.gameObject);
+            CreateMessage message = gameObject.GetComponent<CreateMessage>();
+            message.enableLoseObjects();
+            //Destroy (this.gameObject);
         }
     }
 }
