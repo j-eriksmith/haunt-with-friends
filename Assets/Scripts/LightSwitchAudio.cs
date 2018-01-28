@@ -24,9 +24,4 @@ public class LightSwitchAudio : Interactable {
             pc.removeInteractable(this);
         }
     }
-
-    public override void interact()
-    {
-        //Reimplement this if we make every networkable object to be spawned by NetworkManager so logic can live in the object
-    }
 }

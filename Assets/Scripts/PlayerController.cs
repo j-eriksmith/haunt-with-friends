@@ -10,12 +10,12 @@ public class PlayerController : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        damage = GameObject.Find("enemy");
-        damage.SendMessage("addCharacter", gameObject);
         if (isLocalPlayer)
         {
             GetComponent<AudioListener>().enabled = true;
         }
+        //damage = GameObject.Find("enemy");
+        //damage.SendMessage("addCharacter", gameObject);
     }
 
 	// Update is called once per frame
