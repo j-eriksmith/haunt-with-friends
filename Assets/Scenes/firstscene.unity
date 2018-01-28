@@ -4304,11 +4304,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.29
+      value: 2.52
       objectReference: {fileID: 0}
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.58
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4353,6 +4353,11 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: c41e263ce0384444985424b3b3af4c3f, type: 3}
+    - target: {fileID: 82855298805908770, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: MaxDistance
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a09036a8333214aa4a05278748798d25, type: 2}
   m_IsPrefabParent: 0
@@ -4454,6 +4459,11 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23582978119458022, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a09036a8333214aa4a05278748798d25, type: 2}
   m_IsPrefabParent: 0
@@ -4553,6 +4563,11 @@ Prefab:
     - target: {fileID: 82855298805908770, guid: a09036a8333214aa4a05278748798d25,
         type: 2}
       propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23582978119458022, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5507,6 +5522,11 @@ Prefab:
         type: 2}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82855298805908770, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: MaxDistance
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a09036a8333214aa4a05278748798d25, type: 2}
@@ -8448,11 +8468,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.84
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.09
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 4442290876044048, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8497,6 +8517,11 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d1890b644dcde984394facc8f72517ca, type: 3}
+    - target: {fileID: 82855298805908770, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: MaxDistance
+      value: 1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a09036a8333214aa4a05278748798d25, type: 2}
   m_IsPrefabParent: 0
@@ -9038,7 +9063,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861617128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.77, y: -0.12, z: -0.3}
+  m_LocalPosition: {x: 1.77, y: 0.39, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1532271840}
