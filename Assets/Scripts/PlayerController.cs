@@ -109,7 +109,6 @@ public class PlayerController : NetworkBehaviour {
             }
             else if (!audioSrc.isPlaying && canStep)
             {
-                print("start");
                 if (quadrant == 1)
                 {
                     audioSrc.PlayOneShot(clipWood);
@@ -194,15 +193,6 @@ public class PlayerController : NetworkBehaviour {
         if (currentInteractable == interactable) //In case they're somehow inside of two interactable zones, don't null out immediately
         {
             interactable = null;
-        }
-    }
-
-    private void CheckForWin(int finishedPlayers)
-    {
-        Debug.Log(finishedPlayers);
-        if (finishedPlayers == 2)
-        {
-            Debug.Log("you've done it!");
         }
     }
 

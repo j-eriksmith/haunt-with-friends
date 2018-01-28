@@ -20,7 +20,6 @@ public class GhostTaunt : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        Debug.Log(t);
         if (t >= timeToRoll)
         {
             int rand = Random.Range(0, 1) * 4;
