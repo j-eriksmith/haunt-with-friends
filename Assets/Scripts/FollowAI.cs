@@ -7,21 +7,21 @@ using UnityEngine.Networking;
 public class FollowAI : NetworkBehaviour {
 
 	GameObject player;
+	private float speed = 0.5f;
 	private bool playerInRange;
 	// Use this for initialization
 	void Start()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
+	void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.gameObject == player) {
 			playerInRange = true;
 		}
 	}
 
-	void OnCollisionExit2D(Collision2D other)
+	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject == player) {
 			playerInRange = false;
@@ -31,8 +31,12 @@ public class FollowAI : NetworkBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		if (playerInRange) {
-			transform.position = Vector3.MoveTowards(player.transform.position, this.transform.position, 0);
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag ("Player");
+		} 
+		else if (playerInRange) {
+			//Vector2 delta =  player.transform.position
+			this.transform.position = Vector3.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
 		}	 
 	}
 }

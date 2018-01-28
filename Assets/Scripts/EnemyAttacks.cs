@@ -44,7 +44,7 @@ public class EnemyAttacks : NetworkBehaviour {
 
 	void checkInBounds()
 	{
-		playerInBounds = Vector3.Distance (player.transform.position, this.transform.position) <= 0.1;
+		playerInBounds = Vector3.Distance (player.transform.position, this.transform.position) <= 1.5;
 	}
 
 	public void dealDamage(int damage)
