@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/firstscene with ghosts.unity
-    guid: d2d586c658b3b5c4f82aab2f013df17a
+    path: Assets/Scenes/firstscene.unity
+    guid: 7d4af8306fb3c3249847fea0a7a11dac

@@ -11,6 +11,7 @@ public class CreateMessage : MonoBehaviour {
     {
         winText.SetActive(true);
         button.SetActive(true);
+        Debug.Log("hello i am activee");
     }
 
     public void enableLoseObjects()

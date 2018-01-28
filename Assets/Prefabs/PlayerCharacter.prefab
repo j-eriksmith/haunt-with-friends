@@ -520,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moving: 0
+  exitDoor: {fileID: 0}
 --- !u!114 &114547437422323084
 MonoBehaviour:
   m_ObjectHideFlags: 1

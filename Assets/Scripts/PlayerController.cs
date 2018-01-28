@@ -25,6 +25,7 @@ public class PlayerController : NetworkBehaviour {
     private bool canStep = true, canStopStep = false;
     private int quadrant;
     private int noiseQuadrant;
+    private GameObject exitDoor; //I'm sorry this is a hacky fix because we have 30 mins left 
 
     // Use this for initialization
     void Start() {
@@ -180,6 +181,7 @@ public class PlayerController : NetworkBehaviour {
 
         GetComponent<SpriteRenderer>().color = Color.blue;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        exitDoor = GameObject.FindGameObjectWithTag("ExitDoor");
         mainCamera.GetComponent<AudioListener>().enabled = false;
     }
 
@@ -250,12 +252,14 @@ public class PlayerController : NetworkBehaviour {
     [ClientRpc]
     private void RpcOpenExitDoor()
     {
-        currentInteractable.PlayInteractSound();
+        if (currentInteractable != null) currentInteractable.PlayInteractSound();
+        exitDoor.GetComponent<ExitDoor>().Open();
         currentInteractable = null;
     }
 
     public void IncrementPlayersDone()
     {
+        Debug.Log("Tanenbaum meme alert");
         CmdIncrementPlayersDone();
     }
 
@@ -273,7 +277,7 @@ public class PlayerController : NetworkBehaviour {
         {
             CreateMessage message = gameObject.GetComponent<CreateMessage>();
             message.enableWinObjects();
-            //Debug.Log("game is done!");
+            Debug.Log("game is done!");
         }
     }
 }

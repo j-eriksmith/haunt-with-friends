@@ -33,7 +33,7 @@ public class Key : Interactable
         audioSource.clip = interactSound;
         audioSource.loop = false;
         audioSource.Play();
-        exitDoor.Open();
+        //exitDoor.Open();
         Destroy(this.gameObject, 2f);
     }
 }
