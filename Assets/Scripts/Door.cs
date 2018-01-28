@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class LightSwitchAudio : Interactable {
+public class Door : Interactable {
 
     PlayerController pc;
+    AudioClip interactSound;
+    AudioSource audioSource;
 
-    public override void PlayInteractSound()
+    private void Start()
     {
-        //If we want a different sound for the light switch when its on...
+        interactSound = Resources.Load<AudioClip>("Audio/door-locked");
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,5 +30,15 @@ public class LightSwitchAudio : Interactable {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.removeInteractable(this);
         }
+    }
+
+    public override void PlayInteractSound()
+    {
+        GetComponent<CircleCollider2D>().enabled = false;
+        audioSource.Stop();
+        audioSource.clip = interactSound;
+        audioSource.loop = false;
+        audioSource.Play();
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }
