@@ -45,6 +45,14 @@ public class PlayerController : NetworkBehaviour {
         currentInteractable = interactable;
     }
 
+    public void removeInteractable(Interactable interactable)
+    {
+        if (currentInteractable == interactable) //In case they're somehow inside of two interactable zones, don't null out immediately
+        {
+            interactable = null;
+        }
+    }
+
 
     //Light Switch Logic (this can't live on its own because command calls must originate from a NetworkManager spawned object)
     //-------------------------
