@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CreateMessage : MonoBehaviour {
     public static GameObject winText;
-    public static GameObject loseText;
+    //public static GameObject loseText;
     public static GameObject button;
 
     public void enableWinObjects()
@@ -15,7 +15,7 @@ public class CreateMessage : MonoBehaviour {
 
     public void enableLoseObjects()
     {
-        loseText.SetActive(true);
+        //loseText.SetActive(true);
         button.SetActive(false);
     }
 }

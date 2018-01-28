@@ -7,7 +7,6 @@ public class EnemyAttacks : NetworkBehaviour {
 
 	GameObject player;	
 	public int damage;
-	private bool playerInBounds = false;
 	public float timeBetweenDamage = 1.5f;
 	private float currTime = 0;
 	private bool firstCollision = true;
@@ -21,7 +20,6 @@ public class EnemyAttacks : NetworkBehaviour {
     {
 		if (other.gameObject.tag == "Player" && checkMinimumDistance(other.gameObject))
         {
-			print (checkMinimumDistance(other.gameObject));
 			if (firstCollision) {
 				dealDamage (damage, other.gameObject);
 				firstCollision = false;
@@ -38,7 +36,7 @@ public class EnemyAttacks : NetworkBehaviour {
 
 	bool checkMinimumDistance(GameObject player)
 	{
-		return Vector3.Distance (player.transform.position, this.transform.position) <= 0.5;
+		return Vector3.Distance (player.transform.position, this.transform.position) <= 0.35f;
 	}
 
     private void OnTriggerExit2D(Collider2D collision)
