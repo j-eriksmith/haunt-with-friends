@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
-    [SyncVar]
-    public int finishedPlayers = 0;
+    private int finishedPlayers = 0;
 
     private Interactable currentInteractable;
     private GameObject damage;
@@ -236,14 +235,13 @@ public class PlayerController : NetworkBehaviour {
     [Command]
     private void CmdIncrementPlayersDone()
     {
-        finishedPlayers++;
-        Debug.Log(finishedPlayers);
         RpcIncrementPlayersDone();
     }
 
     [ClientRpc]
     private void RpcIncrementPlayersDone()
     {
+        finishedPlayers++;
         if (finishedPlayers == 2)
         {
             Debug.Log("game is done!");
