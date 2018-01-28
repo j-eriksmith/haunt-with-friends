@@ -81,7 +81,7 @@ public class PlayerController : NetworkBehaviour {
         currentInteractable.GetComponent<Light>().enabled = true;
         StartCoroutine(LightDelay());
     }
-    //--------------------------
+    //Door commands--------------------------
 
     [Command]
     private void CmdOpenDoor()
