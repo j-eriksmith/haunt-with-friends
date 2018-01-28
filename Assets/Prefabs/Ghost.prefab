@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 23582978119458022}
   - component: {fileID: 61428905713623966}
   - component: {fileID: 82855298805908770}
+  - component: {fileID: 114987967521955710}
+  - component: {fileID: 114466403522013744}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -158,7 +160,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -189,3 +191,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114466403522013744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187358790403592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c81db58ed9f4bc2857439fe0d5b55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114987967521955710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187358790403592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 160
+    i1: 144
+    i2: 54
+    i3: 168
+    i4: 51
+    i5: 50
+    i6: 20
+    i7: 170
+    i8: 74
+    i9: 5
+    i10: 39
+    i11: 135
+    i12: 72
+    i13: 121
+    i14: 141
+    i15: 37
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
