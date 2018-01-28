@@ -11,18 +11,35 @@ public class TestController : MonoBehaviour{
     private AudioClip clip;
     private AudioSource audioSrc;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb = this.GetComponent<Rigidbody2D>();
         audioSrc = GetComponent<AudioSource>();
         clip = Resources.Load<AudioClip>("Audio/wooden_footsteps");
         print(clip);
-        audioSrc.clip = clip;
-        audioSrc.Play();
+        print(clip.length);
 	}
+
+    IEnumerator wood_step_sound_guard() // Terminates a tiny amount early so that it can be called again without conflict
+    {
+        float time = 0.05f;
+        int stepcount = 0;
+        while(time < clip.length-0.05f)
+        {
+            time += Time.deltaTime;
+            if(stepcount <= (int)(time/clip.length*9))
+            {
+                stepcount++;
+                print("step");
+            }
+            yield return null;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        // Movement code
         dir = new bool[] { Input.GetKey(KeyCode.UpArrow), Input.GetKey(KeyCode.DownArrow), 
             Input.GetKey(KeyCode.LeftArrow), Input.GetKey(KeyCode.RightArrow) };
         rb.velocity = new Vector2((System.Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - System.Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow))) * SPEED, 
@@ -30,6 +47,27 @@ public class TestController : MonoBehaviour{
         if(dir[0] || dir[1] || dir[2] || dir[3])
         {
             moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+
+        // Footsteps code
+        if(moving)
+        {
+            if(!audioSrc.isPlaying)
+            {
+                print("start");
+                audioSrc.PlayOneShot(clip);
+                StartCoroutine("wood_step_sound_guard");
+            }
+        }
+        else
+        {
+            print("stop");
+            audioSrc.Stop();
+            StopCoroutine("wood_step_sound_guard");
         }
 	}
 }
