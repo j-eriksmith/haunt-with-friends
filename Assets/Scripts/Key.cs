@@ -22,6 +22,7 @@ public class Key : Interactable
         {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.setInteractable(this);
+            pc.SendOpenDoorCmd();
         }
     }
 
