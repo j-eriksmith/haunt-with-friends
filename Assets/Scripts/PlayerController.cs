@@ -23,6 +23,8 @@ public class PlayerController : NetworkBehaviour {
     private float moveTime = 0f;
     private float lastStep = 0f;
     private bool canStep = true, canStopStep = false;
+    private int quadrant;
+    private int noiseQuadrant;
 
     // Use this for initialization
     void Start() {
@@ -33,6 +35,13 @@ public class PlayerController : NetworkBehaviour {
         clipCarpet = Resources.Load<AudioClip>("Audio/carpet_footsteps_loop");
         stepWait = clipWood.length / 9;
         stopStepWait = stepWait - 0.1f;
+        updateQuadrant();
+        noiseQuadrant = quadrant;
+    }
+
+    void updateQuadrant()
+    {
+        quadrant = System.Convert.ToInt32(rb.position.x > -1) * 2 + System.Convert.ToInt32(rb.position.y > 0);
     }
 
     // Update is called once per frame
@@ -68,6 +77,7 @@ public class PlayerController : NetworkBehaviour {
         {
             moving = false;
         }
+        updateQuadrant();
 
         GetComponent<AudioListener>().enabled = true;
         hasEars = true;
@@ -88,11 +98,38 @@ public class PlayerController : NetworkBehaviour {
         // Footsteps code
         if (moving && moveTime >= WALL_HIT_STEP_DELAY)
         {
-            if (!audioSrc.isPlaying && canStep)
+            if (noiseQuadrant != quadrant)
+            {
+                if (canStopStep)
+                {
+                    noiseQuadrant = quadrant;
+                    audioSrc.Stop();
+                    StopCoroutine("wood_step_sound_guard");
+                }
+            }
+            else if (!audioSrc.isPlaying && canStep)
             {
                 print("start");
-                audioSrc.PlayOneShot(clipWood);
-                StartCoroutine("wood_step_sound_guard");
+                if (quadrant == 1)
+                {
+                    audioSrc.PlayOneShot(clipWood);
+                    StartCoroutine("wood_step_sound_guard");
+                }
+                else if(quadrant == 0)
+                {
+                    audioSrc.PlayOneShot(clipCarpet);
+                    StartCoroutine("wood_step_sound_guard");
+                }
+                else if (quadrant == 2)
+                {
+                    audioSrc.PlayOneShot(clipStone);
+                    StartCoroutine("wood_step_sound_guard");
+                }
+                else
+                {
+                    audioSrc.PlayOneShot(clipStone);
+                    StartCoroutine("wood_step_sound_guard");
+                }
             }
         }
         else

@@ -153,46 +153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &115730158 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1687316739706200, guid: 61f53934780d04dc69078250c1783e7c,
-    type: 2}
-  m_PrefabInternal: {fileID: 263238243}
---- !u!58 &115730163
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 115730158}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4
---- !u!1 &119223907 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1687316739706200, guid: 61f53934780d04dc69078250c1783e7c,
-    type: 2}
-  m_PrefabInternal: {fileID: 504694258}
---- !u!58 &119223912
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 119223907}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4
 --- !u!1 &123229931
 GameObject:
   m_ObjectHideFlags: 0
@@ -7263,6 +7223,11 @@ Prefab:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 61893461813264586, guid: 9be234fb94a2e45fab9cb7e81d80c6a5,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9be234fb94a2e45fab9cb7e81d80c6a5, type: 2}
   m_IsPrefabParent: 0
@@ -8035,6 +8000,11 @@ Prefab:
     - target: {fileID: 1187358790403592, guid: a09036a8333214aa4a05278748798d25, type: 2}
       propertyPath: m_Name
       value: Ghost closer to key
+      objectReference: {fileID: 0}
+    - target: {fileID: 82855298805908770, guid: a09036a8333214aa4a05278748798d25,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a09036a8333214aa4a05278748798d25, type: 2}
@@ -9260,7 +9230,7 @@ Prefab:
     - target: {fileID: 58452888767126724, guid: 90c9d51a821a84f788243f63cbcb51d3,
         type: 2}
       propertyPath: m_Radius
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90c9d51a821a84f788243f63cbcb51d3, type: 2}
