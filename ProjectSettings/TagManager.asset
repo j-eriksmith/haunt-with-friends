@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - ExitDoor
+  - WinText
+  - QuitButton
   layers:
   - Default
   - TransparentFX

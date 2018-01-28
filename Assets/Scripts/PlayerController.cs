@@ -25,6 +25,7 @@ public class PlayerController : NetworkBehaviour {
     private bool canStep = true, canStopStep = false;
     private int quadrant;
     private int noiseQuadrant;
+    private GameObject exitDoor; //I'm sorry this is a hacky fix because we have 30 mins left 
 
     // Use this for initialization
     void Start() {
@@ -41,7 +42,7 @@ public class PlayerController : NetworkBehaviour {
 
     void updateQuadrant()
     {
-        quadrant = System.Convert.ToInt32(rb.position.x > -1) * 2 + System.Convert.ToInt32(rb.position.y > 0);
+        quadrant = System.Convert.ToInt32(rb.position.x > 0) * 2 + System.Convert.ToInt32(rb.position.y > 0);
     }
 
     // Update is called once per frame
@@ -170,6 +171,8 @@ public class PlayerController : NetworkBehaviour {
                 CmdSetLight(currentInteractable.GetInstanceID());
             else if (currentInteractable is Door)
                 CmdOpenDoor();
+            else if (currentInteractable is ExitDoor)
+                CmdOpenExitDoor();
         }
     }
 
@@ -180,6 +183,7 @@ public class PlayerController : NetworkBehaviour {
 
         GetComponent<SpriteRenderer>().color = Color.blue;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        exitDoor = GameObject.FindGameObjectWithTag("ExitDoor");
         mainCamera.GetComponent<AudioListener>().enabled = false;
     }
 
@@ -215,6 +219,7 @@ public class PlayerController : NetworkBehaviour {
     [ClientRpc]
     private void RpcOnLightHook(int light)
     {
+        Debug.Log(currentInteractable);
         currentInteractable.GetComponent<CircleCollider2D>().enabled = false;
         currentInteractable.GetComponent<Light>().enabled = true;
         StartCoroutine(LightDelay());
@@ -250,12 +255,14 @@ public class PlayerController : NetworkBehaviour {
     [ClientRpc]
     private void RpcOpenExitDoor()
     {
-        currentInteractable.PlayInteractSound();
-        currentInteractable = null;
+        GameObject exitDoor = GameObject.FindGameObjectWithTag("ExitDoor");
+        exitDoor.GetComponent<ExitDoor>().PlayInteractSound();
+        if (currentInteractable == exitDoor) currentInteractable = null;
     }
 
     public void IncrementPlayersDone()
     {
+        Debug.Log("Tanenbaum meme alert");
         CmdIncrementPlayersDone();
     }
 
@@ -273,7 +280,7 @@ public class PlayerController : NetworkBehaviour {
         {
             CreateMessage message = gameObject.GetComponent<CreateMessage>();
             message.enableWinObjects();
-            //Debug.Log("game is done!");
+            Debug.Log("game is done!");
         }
     }
 }
