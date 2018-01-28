@@ -271,7 +271,9 @@ public class PlayerController : NetworkBehaviour {
         finishedPlayers++;
         if (finishedPlayers == 2)
         {
-            Debug.Log("game is done!");
+            CreateMessage message = gameObject.GetComponent<CreateMessage>();
+            message.enableWinObjects();
+            //Debug.Log("game is done!");
         }
     }
 }
