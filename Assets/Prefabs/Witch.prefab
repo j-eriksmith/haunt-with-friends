@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 82192472295571076}
   - component: {fileID: 114048499805646516}
   - component: {fileID: 114559186230207044}
+  - component: {fileID: 114633556067515590}
   m_Layer: 0
   m_Name: Witch
   m_TagString: enemy
@@ -59,7 +60,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.5
 --- !u!82 &82192472295571076
 AudioSource:
   m_ObjectHideFlags: 1
@@ -73,7 +74,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -96,14 +97,14 @@ AudioSource:
       outSlope: -2.5009959
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.8
-      value: 0.5
-      inSlope: -0.62524897
-      outSlope: -0.62524897
+      time: 0.6874817
+      value: 0.43595886
+      inSlope: -1.6251158
+      outSlope: -1.6251158
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0.33218995
+      value: 0
       inSlope: -0.4001595
       outSlope: -0.4001595
       tangentMode: 0
@@ -176,8 +177,8 @@ MonoBehaviour:
     i13: 203
     i14: 81
     i15: 211
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114559186230207044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +204,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   timeBetweenDamage: 1.5
+--- !u!114 &114633556067515590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740848185795858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &212419392361390386
 SpriteRenderer:
   m_ObjectHideFlags: 1

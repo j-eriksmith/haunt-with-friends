@@ -35,8 +35,6 @@ public class FollowAI : NetworkBehaviour {
 		GameObject closest_target = null; 
 		float min_distance = 1000f;
 		foreach (GameObject player in container) {
-			print ("container loop");
-			print ("player");
 			float distance = Vector3.Distance (this.transform.position, player.transform.position);
 			if (distance <= min_distance) {
 				closest_target = player;

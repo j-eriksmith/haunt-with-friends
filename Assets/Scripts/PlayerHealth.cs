@@ -17,7 +17,7 @@ public class PlayerHealth : NetworkBehaviour {
         maxHealth -= amount;
         if (maxHealth <= 0)
         {
-			Destroy (this.gameObject);
+			//Destroy (this.gameObject);
         }
     }
 }

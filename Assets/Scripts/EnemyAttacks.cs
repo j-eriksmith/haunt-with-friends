@@ -43,7 +43,6 @@ public class EnemyAttacks : NetworkBehaviour {
 
 	public void dealDamage(int damage, GameObject player)
 	{
-		print ("Take Damage");
 		player.SendMessage ("TakeDamage", damage);
 	}
 }

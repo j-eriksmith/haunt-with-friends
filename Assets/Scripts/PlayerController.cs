@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
-    [SyncVar(hook = "CheckForWin")]
+    [SyncVar]
     public int finishedPlayers = 0;
 
     private Interactable currentInteractable;
@@ -128,5 +128,27 @@ public class PlayerController : NetworkBehaviour {
     {
         currentInteractable.PlayInteractSound();
         currentInteractable = null;
+    }
+
+    public void IncrementPlayersDone()
+    {
+        CmdIncrementPlayersDone();
+    }
+
+    [Command]
+    private void CmdIncrementPlayersDone()
+    {
+        finishedPlayers++;
+        Debug.Log(finishedPlayers);
+        RpcIncrementPlayersDone();
+    }
+
+    [ClientRpc]
+    private void RpcIncrementPlayersDone()
+    {
+        if (finishedPlayers == 2)
+        {
+            Debug.Log("game is done!");
+        }
     }
 }

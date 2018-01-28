@@ -19,8 +19,7 @@ public class ExitDoor : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().finishedPlayers++;
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerController>().IncrementPlayersDone();
         }
     }
 
