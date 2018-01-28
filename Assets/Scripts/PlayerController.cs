@@ -9,16 +9,16 @@ public class PlayerController : NetworkBehaviour {
     private bool hasEars;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
 
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update() {
         if (!isLocalPlayer) return;
         float x = Input.GetAxis("Horizontal") * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * Time.deltaTime;
 
-        if (!hasEars && x != 0 || y != 0)
+        if (!hasEars && x != 0 || y != 0) //Remove hasEars check to hear awful sounds
         {
             GetComponent<AudioListener>().enabled = true;
             hasEars = true;
@@ -98,5 +98,25 @@ public class PlayerController : NetworkBehaviour {
         currentInteractable.PlayInteractSound();
         currentInteractable = null;
     }
+
+    //Exit Door commands--------------------
+    public void SendOpenDoorCmd()
+    {
+        CmdOpenExitDoor();
+        currentInteractable = null;
+    }
+
+    [Command] 
+    private void CmdOpenExitDoor()
+    {
+        RpcOpenExitDoor();
+    }
+
+    [ClientRpc]
+    private void RpcOpenExitDoor()
+    {
+        currentInteractable.PlayInteractSound();
+    }
+
 
 }

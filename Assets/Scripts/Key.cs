@@ -8,20 +8,20 @@ public class Key : Interactable
     PlayerController pc;
     AudioClip interactSound;
     AudioSource audioSource;
-    public Door exitDoor;
+    public ExitDoor exitDoor;
 
     private void Start()
     {
         interactSound = Resources.Load<AudioClip>("Audio/keys-rattling");
         audioSource = GetComponent<AudioSource>();
-        //audioSource.PlayDelayed(5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayInteractSound();
+            PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+            pc.setInteractable(this);
         }
     }
 
@@ -32,6 +32,7 @@ public class Key : Interactable
         audioSource.clip = interactSound;
         audioSource.loop = false;
         audioSource.Play();
+        exitDoor.Open();
         Destroy(this.gameObject, 2f);
     }
 }

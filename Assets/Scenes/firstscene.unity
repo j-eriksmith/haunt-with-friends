@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.6397059, g: 0.6397059, b: 0.6397059, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -3980,7 +3980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac80443f89f08b4995e5c1a920a9802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitDoor: {fileID: 0}
+  exitDoor: {fileID: 828543257}
 --- !u!58 &165946485
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4287,6 +4287,11 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114075621551159392, guid: 61f53934780d04dc69078250c1783e7c,
+        type: 2}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61f53934780d04dc69078250c1783e7c, type: 2}
   m_IsPrefabParent: 0
@@ -4588,6 +4593,11 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114075621551159392, guid: 61f53934780d04dc69078250c1783e7c,
+        type: 2}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61f53934780d04dc69078250c1783e7c, type: 2}
   m_IsPrefabParent: 0
@@ -4699,6 +4709,8 @@ GameObject:
   m_Component:
   - component: {fileID: 545665805}
   - component: {fileID: 545665806}
+  - component: {fileID: 545665808}
+  - component: {fileID: 545665807}
   m_Layer: 0
   m_Name: Window (5)
   m_TagString: Untagged
@@ -4729,8 +4741,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 1
+  m_Intensity: 7
+  m_Range: 4.1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -4755,6 +4767,32 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!58 &545665807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545665804}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.33}
+  serializedVersion: 2
+  m_Radius: 0.7
+--- !u!114 &545665808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545665804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7079bb7141e5e1a44be927abc7e7020d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &575012006
 Prefab:
   m_ObjectHideFlags: 0
@@ -4764,11 +4802,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4839285186856910, guid: d18da4cb4a2614aecb3453e2a4a436db, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.3009996
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4839285186856910, guid: d18da4cb4a2614aecb3453e2a4a436db, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.72
+      value: 3.61
       objectReference: {fileID: 0}
     - target: {fileID: 4839285186856910, guid: d18da4cb4a2614aecb3453e2a4a436db, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5140,6 +5178,7 @@ GameObject:
   - component: {fileID: 828543255}
   - component: {fileID: 828543254}
   - component: {fileID: 828543256}
+  - component: {fileID: 828543257}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -5153,7 +5192,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 828543253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -5184,20 +5223,20 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 2fb0037a8a689b04a9f9905ace903836, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1.5
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -5205,20 +5244,20 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
+      time: 0.37912178
+      value: 0.9973068
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
+      value: 0.35317993
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5255,6 +5294,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &828543257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828543253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df15ba7356efa0418c382b9565be847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &840191467
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,6 +5477,8 @@ GameObject:
   m_Component:
   - component: {fileID: 862684148}
   - component: {fileID: 862684149}
+  - component: {fileID: 862684151}
+  - component: {fileID: 862684150}
   m_Layer: 0
   m_Name: Window (6)
   m_TagString: Untagged
@@ -5441,7 +5493,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862684147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.17, y: 3.16, z: -0.21308595}
+  m_LocalPosition: {x: 4.27, y: 2.51, z: -0.21308595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1647047308}
@@ -5457,8 +5509,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0.50283974, b: 0.051470578, a: 1}
-  m_Intensity: 2.36
-  m_Range: 0.94
+  m_Intensity: 3
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -5483,6 +5535,32 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!58 &862684150
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862684147}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.33}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &862684151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862684147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7079bb7141e5e1a44be927abc7e7020d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &929524010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7184,7 +7262,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.90344834, g: 1, b: 0, a: 1}
   m_Intensity: 8.35
-  m_Range: 2.0043597
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -7784,7 +7862,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.90344834, g: 1, b: 0, a: 1}
   m_Intensity: 8.35
-  m_Range: 2.0043597
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -7947,6 +8025,46 @@ Transform:
   - {fileID: 1861617129}
   m_Father: {fileID: 1833279690}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1586356588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1586356590}
+  - component: {fileID: 1586356589}
+  m_Layer: 0
+  m_Name: Spawn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1586356589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586356588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1586356590
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586356588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.028, y: -3.835, z: -0.19471018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612481698
 GameObject:
@@ -8578,7 +8696,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.90344834, g: 1, b: 0, a: 1}
   m_Intensity: 8.35
-  m_Range: 2.0043597
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
