@@ -37,7 +37,7 @@ public class ToolPicker : MonoBehaviour {
 
         else if (tool == 2)
         {
-            brushColor = new Color32(0, 0, 255, 255);
+            brushColor = new Color32(0, 255, 0, 255);
             brushSize = 3;
             Debug.Log("Blue Selected");
         }
