@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class Ghost : NetworkBehaviour {
 
 	private bool playerInBounds = false;
-	private bool alreadySpoken = false;
+	private bool alreadySpoken;
 	AudioSource audioSource;
 
 	void Start()
@@ -23,8 +23,10 @@ public class Ghost : NetworkBehaviour {
 
 	void Update ()
 	{
-		if (playerInBounds) {
+		if (!alreadySpoken && playerInBounds) {
 			audioSource.Play ();
+		} else if (!audioSource.isPlaying) {
+			alreadySpoken = true;
 		}
 	}
 }
