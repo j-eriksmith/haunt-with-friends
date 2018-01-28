@@ -8,10 +8,17 @@ public class TestController : MonoBehaviour{
     private const float SPEED = 2.4f;
     private Rigidbody2D rb;
     private bool[] dir = new bool[4];
+    private AudioClip clip;
+    private AudioSource audioSrc;
 
 	// Use this for initialization
 	void Start () {
         rb = this.GetComponent<Rigidbody2D>();
+        audioSrc = GetComponent<AudioSource>();
+        clip = Resources.Load<AudioClip>("Audio/wooden_footsteps");
+        print(clip);
+        audioSrc.clip = clip;
+        audioSrc.Play();
 	}
 	
 	// Update is called once per frame
