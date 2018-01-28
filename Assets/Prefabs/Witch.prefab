@@ -23,9 +23,11 @@ GameObject:
   - component: {fileID: 114572722202592432}
   - component: {fileID: 58452888767126724}
   - component: {fileID: 82192472295571076}
+  - component: {fileID: 114048499805646516}
+  - component: {fileID: 114559186230207044}
   m_Layer: 0
   m_Name: Witch
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +59,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.09
+  m_Radius: 10
 --- !u!82 &82192472295571076
 AudioSource:
   m_ObjectHideFlags: 1
@@ -138,6 +140,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114048499805646516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740848185795858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 144
+    i1: 201
+    i2: 213
+    i3: 26
+    i4: 130
+    i5: 26
+    i6: 132
+    i7: 247
+    i8: 136
+    i9: 36
+    i10: 63
+    i11: 99
+    i12: 203
+    i13: 203
+    i14: 81
+    i15: 211
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114559186230207044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740848185795858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01f99590987e448d9114af41fc6ff4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114572722202592432
 MonoBehaviour:
   m_ObjectHideFlags: 1

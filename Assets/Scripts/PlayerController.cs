@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
-
     private Interactable currentInteractable;
     private GameObject damage;
 
@@ -14,10 +13,7 @@ public class PlayerController : NetworkBehaviour {
         {
             GetComponent<AudioListener>().enabled = true;
         }
-        //damage = GameObject.Find("enemy");
-        //damage.SendMessage("addCharacter", gameObject);
     }
-
 	// Update is called once per frame
 	void Update () {
         if (!isLocalPlayer) return;
@@ -32,7 +28,10 @@ public class PlayerController : NetworkBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
-            if (isClient) CmdSetLight(enabled);
+            if (isClient)
+            {
+                CmdSetLight(enabled);
+            }
         }
     }
 
@@ -62,9 +61,10 @@ public class PlayerController : NetworkBehaviour {
     //-------------------------
     private IEnumerator LightDelay()
     {
+        Interactable finalInteractable = currentInteractable;
         yield return new WaitForSeconds(5);
-        currentInteractable.GetComponent<Light>().enabled = false;
-        currentInteractable.GetComponent<AudioSource>().Stop(); //Todo: play light breaking audio
+        finalInteractable.GetComponent<Light>().enabled = false;
+        finalInteractable.GetComponent<AudioSource>().Stop(); //Todo: play light breaking audio
         currentInteractable = null;
     }
 
