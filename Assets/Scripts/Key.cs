@@ -8,11 +8,13 @@ public class Key : Interactable
     PlayerController pc;
     AudioClip interactSound;
     AudioSource audioSource;
+    public Door exitDoor;
 
     private void Start()
     {
         interactSound = Resources.Load<AudioClip>("Audio/keys-rattling");
         audioSource = GetComponent<AudioSource>();
+        //audioSource.PlayDelayed(5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

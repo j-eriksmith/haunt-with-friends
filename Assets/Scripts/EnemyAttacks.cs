@@ -11,49 +11,39 @@ public class EnemyAttacks : NetworkBehaviour {
 	public float timeBetweenDamage = 1.5f;
 	private float currTime = 0;
 	private bool firstCollision = true;
-	// Use this for initialization
-	void Start()
+
+    private void Start()
+    {
+        //GetComponent<AudioSource>().PlayDelayed(5f);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (firstCollision)
+            {
+                dealDamage(damage, other.gameObject);
+                firstCollision = false;
+            }
+            currTime += Time.deltaTime;                
+            if (currTime > timeBetweenDamage)
+            {
+                dealDamage(damage, other.gameObject);
+                currTime = 0;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currTime = 0;
+
+    }
+
+	public void dealDamage(int damage, GameObject player)
 	{
-		this.player = GameObject.FindGameObjectWithTag ("Player");
+		print ("Take Damage");
+		player.SendMessage ("TakeDamage", damage);
 	}
-
-	// Update is called one per frame
-	void Update()
-	{
-		if (player == null) {
-			this.player = GameObject.FindGameObjectWithTag ("Player");
-		} else {
-			checkInBounds ();
-			if (!playerInBounds) {
-				firstCollision = true;
-				currTime = 0;
-			} else if (playerInBounds && firstCollision) {
-				dealDamage (damage);
-				currTime += Time.deltaTime;
-				firstCollision = false;
-			} else {
-				currTime += Time.deltaTime;
-				if (currTime > timeBetweenDamage) {
-					dealDamage (damage);
-					currTime = 0;
-				}
-			}
-		}
-
-	}
-
-	void checkInBounds()
-	{
-		playerInBounds = Vector3.Distance (player.transform.position, this.transform.position) <= 1.5;
-	}
-
-	public void dealDamage(int damage)
-	{
-		if (playerInBounds) {
-			print ("Take Damage");
-			player.SendMessage ("TakeDamage", damage);
-		}
-	}
-
-
 }

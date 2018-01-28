@@ -6,13 +6,11 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
     private Interactable currentInteractable;
     private GameObject damage;
+    private bool hasEars;
 
     // Use this for initialization
     void Start () {
-        if (isLocalPlayer)
-        {
-            GetComponent<AudioListener>().enabled = true;
-        }
+
     }
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +18,11 @@ public class PlayerController : NetworkBehaviour {
         float x = Input.GetAxis("Horizontal") * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * Time.deltaTime;
 
+        if (!hasEars && x != 0 || y != 0)
+        {
+            GetComponent<AudioListener>().enabled = true;
+            hasEars = true;
+        }
         transform.Translate(x, y, 0);
         HandleInputs();
     }
@@ -40,6 +43,7 @@ public class PlayerController : NetworkBehaviour {
         //Local player is initialized to blue color
         //GetComponent<SpriteRenderer>().color = Color.clear;
 
+
         GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
@@ -55,7 +59,6 @@ public class PlayerController : NetworkBehaviour {
             interactable = null;
         }
     }
-
 
     //Light Switch Logic (this can't live on its own because command calls must originate from a NetworkManager spawned object)
     //-------------------------
