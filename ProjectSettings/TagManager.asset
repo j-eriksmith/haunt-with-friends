@@ -8,6 +8,7 @@ TagManager:
   - ExitDoor
   - WinText
   - QuitButton
+  - LoseText
   layers:
   - Default
   - TransparentFX

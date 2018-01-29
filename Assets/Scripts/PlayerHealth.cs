@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class PlayerHealth : NetworkBehaviour {
-	public static int maxHealth = 3;
+	public int maxHealth = 3;
     //[SyncVar]
 	// Use this for initialization
 	void Start () {

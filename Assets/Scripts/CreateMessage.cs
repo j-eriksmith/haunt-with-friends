@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CreateMessage : MonoBehaviour {
     private GameObject winText;
-    //public static GameObject loseText;
+    private GameObject loseText;
     private GameObject button;
 
     public void enableWinObjects()
@@ -16,15 +16,21 @@ public class CreateMessage : MonoBehaviour {
         winText.GetComponent<Text>().enabled = true;
         button.GetComponent<Button>().enabled = true;
         button.GetComponent<Image>().enabled = true;
-        Debug.Log("hello i am activee");
+
+        Transform textTransform = button.transform.GetChild(0);
+        textTransform.gameObject.GetComponent<Text>().enabled = true;
     }
 
     public void enableLoseObjects()
     {
-        winText = GameObject.FindGameObjectWithTag("WinText");
+        loseText = GameObject.FindGameObjectWithTag("LoseText");
         button = GameObject.FindGameObjectWithTag("QuitButton");
 
-        //loseText.SetActive(true);
-        button.SetActive(false);
+        loseText.GetComponent<Text>().enabled = true;
+        button.GetComponent<Button>().enabled = true;
+        button.GetComponent<Image>().enabled = true;
+
+        Transform textTransform = button.transform.GetChild(0);
+        textTransform.gameObject.GetComponent<Text>().enabled = true;
     }
 }
