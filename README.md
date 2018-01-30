@@ -9,6 +9,7 @@ itch.io - http://tolkwes.itch.io/haunt-with-friends
 Global Game Jam - https://globalgamejam.org/2018/games/haunt-friends
 
 <b>Team:</b>
+
 Jake Herman - programming, audio
 
 Jake Smith - programming, design
